@@ -25,30 +25,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let colors: [UIColor] = [.red, .yellow, .green]
-    
-    lazy var stackView: UIStackView = {
-        let stack = UIStackView()
-        
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .horizontal
-        stack.alignment = .center
-        stack.distribution = .equalSpacing
-        stack.spacing = 13.0
-        
-        return stack
-    }()
-    
-    lazy var segmentedControl: UISegmentedControl = {
-        let control = UISegmentedControl(items: [".horizontal", ".vertical"])
-        
-        control.translatesAutoresizingMaskIntoConstraints = false
-        control.selectedSegmentIndex = 0
-        control.addTarget(self, action: #selector(handler(_:)), for: .valueChanged)
-        
-        return control
-    }()
-    
     // Do any additional setup here
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,32 +42,6 @@ class ViewController: UIViewController {
     }
     
     private func prepareView() {
-        view.addSubview(segmentedControl)
-        view.addSubview(stackView)
-        
-        NSLayoutConstraint.activate([
-            stackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-            
-            segmentedControl.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 13.0)
-        ])
-        
-        colors.forEach { (color) in
-            let arrangedView = MyView(with: color)
-            stackView.addArrangedSubview(arrangedView)
-        }
-    }
-    
-    @objc func handler(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            stackView.axis = .horizontal
-        case 1:
-            stackView.axis = .vertical
-        default:
-            break
-        }
     }
 }
 
