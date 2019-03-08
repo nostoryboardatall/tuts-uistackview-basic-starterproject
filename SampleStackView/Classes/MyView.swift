@@ -29,18 +29,18 @@ class MyView: UIView {
         return CGSize(width: 69.0, height: 69.0)
     }
     
-    init(with color: UIColor = .blue) {
+    init() {
         super.init(frame: CGRect.zero)
-        setupView(with: color)
+        setupView()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    fileprivate func setupView(with color: UIColor) {
+    fileprivate func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = color
+        backgroundColor = .blue
     }
     
     override func layoutSubviews() {
